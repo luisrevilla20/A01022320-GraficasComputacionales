@@ -1,4 +1,6 @@
 let keysDown = {};
+var p1Score, p2Score;
+var scoreText = p1Score + "|" + p2Score ;
 
 window.addEventListener("keydown", function (event) {
     keysDown[event.key] = true;
@@ -52,6 +54,7 @@ class pelota {
         this.speed = speed;
         this.up = true;
         this.right = true;
+        this.left = false;  
     }
 
     draw(context) {
@@ -73,6 +76,7 @@ class pelota {
         // La pelota va para la derecha
         if (this.right)
             this.x += this.speed;
+
         // La pelota va para la izquierda
         else
             this.x -= this.speed;
@@ -92,6 +96,23 @@ class pelota {
         // Si llega al límite del borde izquierdo
         if ((this.x - this.radio) <= left)
             this.right = true;
+
+        if(right)
+        {
+            this.x = 600/2;
+            this.y = 300/2;
+            p2Score++;
+            right = false;
+        }
+
+        if(left)
+        {
+            this.x = 600/2;
+            this.y = 300/2;
+            p1Score++;
+            left = false;
+        }
+
 
         barras.forEach(barra => {
             // Si la pelota pega con la barra izquierda
@@ -119,8 +140,15 @@ function update(canvas, context, barras, bola) {
 }
 
 function main() {
+    p1Score = p2Score = 0;
     const canvas = document.getElementById("pongCanvas");
     const context = canvas.getContext("2d");
+    console.log(scoreText + "AAAAAAAAAAAAAAAAAA");
+    
+  /*  context.font = "bold 30px Comic Sans MS ";
+    context.fillStyle= '199,67,117';
+    context.fillText( scoreText , canvas.width/2, canvas.height/2- 100);*/
+    
 
     let barraIzq = new barra(10, 120, 20, 60, keyCodeUp='w',keyCodeDown='s');
     let barraDer = new barra(570, 120, 20, 60);
