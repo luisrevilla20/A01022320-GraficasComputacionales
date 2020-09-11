@@ -1,7 +1,7 @@
 # Graficas Computacionales
 # Luis Revilla - A01022320 
 
-_En esta tarea veremos como crear figuras geometricas, sus transformaciones y como asignarle un color a cada una de sus caras_
+_En este repositorio veremos como crear figuras geometricas, sus transformaciones y como asignarle un color a cada una de sus caras. HASTA EL MOMENTO_
 
 ## Comenzando 🚀
 
