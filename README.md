@@ -36,7 +36,7 @@ _Para poder desplegar el proyecto simplemente usa ALT + L / ALT + O o bien da cl
 
 _Usamos las siguientes librerías para desarrollar los diferentes codigos_
 
-* [WebGL](https://en.wikipedia.org/wiki/Regular_dodecahedron) -Info para Dodecahedro
-* [Three](https://commons.wikimedia.org/wiki/File:Dodecahedron_vertices.png) -Info para Dodecahedro
+* [WebGL](https://developer.mozilla.org/es/docs/Web/API/WebGL_API) - Documentación de WebGL
+* [Three.js](https://threejs.org/docs/) -Documentación de Three.js
 
 ⌨️ por [Luis Revilla](https://github.com/luisrevilla20) 😊
