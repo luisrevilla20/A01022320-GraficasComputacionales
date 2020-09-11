@@ -1,5 +1,6 @@
 # Graficas Computacionales
-# Luis Revilla - A01022320 
+# Luis Revilla - A01022320
+# Tarea 1 - Figuras con WebGL   
 
 _En esta tarea veremos como crear figuras geometricas, sus transformaciones y como asignarle un color a cada una de sus caras_
 
@@ -30,13 +31,15 @@ Reinicia Visual Studio Code
 
 ## Despliegue 📦
 
-_Para poder desplegar el proyecto simplemente usa ALT + L / ALT + O o bien da click en la parte inferior "Go Live" en el archivo que deseas correr _
+_Para poder desplegar el proyecto simplemente usa ALT + L / ALT + O o bien da click en la parte inferior "Go Live" en el archivo que deseas correr_
 
 ## Construido con 🛠️
 
-_Usamos las siguientes librerías para desarrollar los diferentes codigos_
+_Use estos sitios web para poder realizar esta actividad_
 
-* [WebGL](https://en.wikipedia.org/wiki/Regular_dodecahedron) -Info para Dodecahedro
-* [Three](https://commons.wikimedia.org/wiki/File:Dodecahedron_vertices.png) -Info para Dodecahedro
+* [Wikipedia](https://en.wikipedia.org/wiki/Regular_dodecahedron) -Info para Dodecahedro
+* [Wikimedia](https://commons.wikimedia.org/wiki/File:Dodecahedron_vertices.png) -Info para Dodecahedro
+* [Polyhedra](https://polyhedra.tessera.li/dodecahedron/list) -Info para Dodecahedro
+* [Geogebra](https://www.geogebra.org/m/xcUQyeap) -Info para Dodecahedro
 
 ⌨️ por [Luis Revilla](https://github.com/luisrevilla20) 😊
