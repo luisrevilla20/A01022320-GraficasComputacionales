@@ -416,336 +416,8 @@ function createPP(gl, translation, rotationAxis)
     return pp;
 }
 
-function createDodecahedron(gl, translation, rotationAxis)
-{    
-    // Vertex Data
-    let vertexBuffer;
-    vertexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
-    let verts = [
-        // 1st face
-        -1.3, 0.0, -0.5,    // 0
-        -0.8, 0.8, -0.8,    // 1
-        0.0, 0.5, -1.3,     // 2
-        0.0, -0.5, -1.3,    // 3
-        -0.8, -0.8, -0.8,   // 4
-
-        //2nd face
-        -0.8, 0.8, 0.8,     // 5
-        -0.5, 1.3, 0.0,     // 6
-        -0.8, 0.8, -0.8,    // 7
-        -1.3, 0.0, -0.5,    // 8
-        -1.3, 0.0, 0.5,     // 9
-
-        //3rd face
-        0.5, 1.3, 0.0,      // 10
-        0.8, 0.8, -0.8,     // 11
-        0.0, 0.5, -1.3,     // 12
-        -0.8, 0.8, -0.8,    // 13
-        -0.5, 1.3, 0.0,     // 14
-
-        //4th face
-        1.3, 0.0, -0.5,     // 15
-        0.8, -0.8, -0.8,    // 16
-        0.0, -0.5, -1.3,    // 17
-        0.0, 0.5, -1.3,     // 18
-        0.8, 0.8, -0.8,     // 19
-
-        //5th face
-        0.5, -1.3, 0.0,     // 20
-        -0.5, -1.3, 0.0,    // 21
-        -0.8, -0.8, -0.8,   // 22
-        0.0, -0.5, -1.3,    // 23
-        0.8, -0.8, -0.8,    // 24
-
-        //6th face
-        -0.8, -0.8, 0.8,    // 25
-        -1.3, 0.0, 0.5,     // 26
-        -1.3, 0.0, -0.5,    // 27
-        -0.8, -0.8, -0.8,   // 28
-        -0.5, -1.3, 0.0,    // 29 
-
-        //7th face
-        0.8, 0.8, 0.8,      // 30
-        1.3, 0.0, 0.5,      // 31
-        1.3, 0.0, -0.5,     // 32
-        0.8, 0.8, -0.8,     // 33
-        0.5, 1.3, 0.0,      // 34
-
-        //8th face
-        0.0, 0.5, 1.3,      // 35
-        0.8, 0.8, 0.8,      // 36
-        0.5, 1.3, 0.0,      // 37
-        -0.5, 1.3, 0.0,     // 38
-        -0.8, 0.8, 0.8,     // 39
-
-        //9th face
-        0.8 -0.8, 0.8,     // 40
-        1.3, 0.0, 0.5,      // 41
-        1.3, 0.0, -0.5,     // 42
-        0.8, -0.8, -0.8,    // 43
-        0.5, -1.3, 0.0,     // 44
-
-        //10th face
-        0.0, -0.5, 1.3,         // 45
-        0.8, -0.8, 0.8,         // 46
-        0.5, -1.3, 0.0,         // 47
-        -0.5, -1.3, 0.0,        // 48
-        -0.8, -0.8, 0.8,        // 49
-
-        //11nth face
-        0.0, 0.5, 1.3,      // 50
-        0.0, -0.5, 1.3,         // 51
-        -0.8, -0.8, 0.8,        // 52
-        -1.3, 0.0, 0.5,         // 53
-        -0.8, 0.8, 0.8,         // 54
-
-        //12nth face
-        0.0, 0.5, 1.3,      // 55
-        0.8, 0.8, 0.8,      // 56
-        1.3, 0.0, 0.5,      // 57
-        0.8, -0.8, 0.8,         // 58
-        0.0, -0.5, 1.3,         // 59
-
-       ];
-
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
-
-    // Color data
-    let colorBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-
-    let faceColors = [
-        
-        [1.0, 0.0, 0.0, 1.0], // Cara 1
-        [0.0, 1.0, 0.0, 1.0], // Cara 2
-        [0.0, 0.0, 1.0, 1.0], // Cara 3
-        [1.0, 1.0, 0.0, 1.0], // Cara 4
-        [1.0, 0.0, 1.0, 1.0], // Cara 5
-        [0.0, 1.0, 1.0, 1.0],  // Cara 6
-        [0.5, 0.0, 0.0, 1.0], //Cara 7
-        [0.0, 0.5, 0.0, 1.0], //Cara 8
-        [0.0, 0.0, 0.5, 1.0], //Cara 9
-        [0.25, 0.0, 0.25, 1.0], //Cara 10
-        [0.0, 0.25, 0.25, 1.0], //Cara 11
-        [0.25, 0.25, 0.25, 1.0] //Cara 12 
-    ];
-
-    // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
-    let vertexColors = [];
-    // for (const color of faceColors) 
-    // {
-    //     for (let j=0; j < 4; j++)
-    //         vertexColors.push(...color);
-    // }
-    faceColors.forEach(color =>{
-        for (let j=0; j < 5; j++)
-            vertexColors.push(...color);
-    });
-
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColors), gl.STATIC_DRAW);
-
-    // Index data (defines the triangles to be drawn).
-    let dodecahedronIndexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, dodecahedronIndexBuffer);
-
-    let dodecahedronIndices = [
-        0, 1, 2,        0, 4, 3,        0, 3, 2,            //1st face
-        5, 6, 7,        5, 9, 8,        5, 8, 7,            //2nd face
-        10, 11, 12,     10, 14, 13,     10, 13, 12,         //3rd face
-        15, 16, 17,     15, 19, 18,     15, 18, 17,         //4th face
-        20, 21, 22,     20, 24, 23,     20, 23, 22,         //5th face
-        25, 26, 27,     25, 29, 28,     25, 28, 27,         //6th face
-        30, 31, 32,     30, 34, 33,     30, 33, 32,         //7th face
-        35, 36, 37,     35, 39, 38,     35, 38, 37,         //8th face
-        40, 41, 42,     40, 44, 43,     40, 43, 42,         //9th face
-        45, 46, 47,     45, 49, 48,     45, 48, 47,         //10th face
-        50, 51, 52,     50, 54, 53,     50, 53, 52,         //11th face
-        55, 56, 57,     55, 59, 58,     55, 58, 57,          //12th face
-    ];
-
-    // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
-    // Uint16Array: Array of 16-bit unsigned integers.
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(dodecahedronIndices), gl.STATIC_DRAW);
-    
-    let dodecahedron = {
-            buffer: vertexBuffer, colorBuffer:colorBuffer, indices:dodecahedronIndexBuffer,
-            vertSize:3, nVerts:verts.lengh, colorSize:4, nColors: faceColors.length, nIndices:dodecahedronIndices.length,
-            primtype:gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime : Date.now()
-        };
-
-    mat4.translate(dodecahedron.modelViewMatrix, dodecahedron.modelViewMatrix, translation);
-
-    dodecahedron.update = function()
-    {
-        let now = Date.now();
-        let deltat = now - this.currentTime;
-        this.currentTime = now;
-        let fract = deltat / duration;
-        let angle = Math.PI * 2 * fract;
-    
-        // Rotates a mat4 by the given angle
-        // mat4 out the receiving matrix
-        // mat4 a the matrix to rotate
-        // Number rad the angle to rotate the matrix by
-        // vec3 axis the axis to rotate around
-        mat4.rotate(this.modelViewMatrix, this.modelViewMatrix, angle, rotationAxis);
-    };
-    
-    return dodecahedron;
-}
-function createDiamond(gl, translation, rotationAxis) {
-    // Vertex Data
-    let vertexBuffer;
-    vertexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-
-    let verts = [
-        //Comienzan áreas positivas
-        // X,    Z,     Y
-        //Primera cara
-        -1.0, 0.0, 1.0, 	//  A   0
-        -1.0, 0.0, -1.0,    //  B   1
-        0.0, 1.25, 0.0,     //  P+  2
-
-        //Segunda cara
-        -1.0, 0.0, -1.0,    //  B   3
-        1.0, 0.0, -1.0,     //  C   4
-        0.0, 1.25, 0.0,     //  P+  5
-
-        //Tercer cara
-        1.0, 0.0, -1.0,     //  C   6
-        1.0, 0.0, 1.0,      //  D   7
-        0.0, 1.25, 0.0,     //  P+  8
-
-        //Cuarta cara
-        1.0, 0.0, 1.0,      //  A   9
-        -1.0, 0.0, 1.0,     //  D   10
-        0.0, 1.25, 0.0,     //  P+  11
-
-
-        //  A partir de aquí se pintan las caras negativas
-
-        //Left side
-        -1.0, 0.0, 1.0, 	//  A   12
-        -1.0, 0.0, -1.0,    //  B   13
-        0.0, -1.25, 0.0,    //  P-  14
-
-        //Back side
-        -1.0, 0.0, -1.0,    //  B   15
-        1.0, 0.0, -1.0,     //  C   16
-        0.0, -1.25, 0.0,    //  P-  17
-
-        //Right side
-        1.0, 0.0, -1.0,     //  C   18
-        1.0, 0.0, 1.0,      //  D   19
-        0.0, -1.25, 0.0,    //  P-  20
-
-        //Front side
-        1.0, 0.0, 1.0,      //  A   21
-        -1.0, 0.0, 1.0,     //  D   22
-        0.0, -1.25, 0.0,    //  P-  23
-    ];
-
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
-
-    // Color data
-    let colorBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-
-    let faceColors = [
-        //R    G    B    T
-        [1.0, 0.0, 0.0, 1.0],       // Primera
-        [0.0, 1.0, 0.0, 1.0],       // Segunda
-        [0.0, 0.0, 1.0, 1.0],       // Tercera
-        [1.0, 1.0, 0.0, 1.0],       // Cuarta
-        [1.0, 0.0, 1.0, 1.0],       // Quinta
-        [0.0, 1.0, 1.0, 1.0],       // Sexta
-        [1.0, 1.0, 1.0, 1.0],       // Séptima  
-        [0.0, 0.0, 0.0, 1.0]        //Octavo
-    ];
-
-    // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
-    let vertexColors = [];
-
-    faceColors.forEach(color => {
-        for (let j = 0; j < 3; j++)
-            vertexColors.push(...color);
-    });
-
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColors), gl.STATIC_DRAW);
-
-    // Index data (defines the triangles to be drawn).
-    let diamondIndexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, diamondIndexBuffer);
-
-    let diamondIndices = [
-        0, 1, 2,        //Primer cara
-        3, 4, 5,        //Segunda cara
-        6, 7, 8,        //Tercera cara
-        9, 10, 11,      //Cuarta cara
-        12, 13, 14,     //Quinta cara
-        15, 16, 17,     //Sexta cara
-        18, 19, 20,     //Séptima cara
-        21, 22, 23      //Octava cara
-    ];
-
-    // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
-    // Uint16Array: Array of 16-bit unsigned integers.
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(diamondIndices), gl.STATIC_DRAW);
-
-    let diamond = {
-        buffer: vertexBuffer, colorBuffer: colorBuffer, indices: diamondIndexBuffer,
-        vertSize: 3, nVerts: 24, colorSize: 4, nColors: 24, nIndices: 24,
-        primtype: gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime: Date.now()
-    };
-
-    mat4.translate(diamond.modelViewMatrix, diamond.modelViewMatrix, translation);
-
-    let bounceTop = true;
-    let bounceBot = false;
-
-    diamond.update = function () {
-        let now = Date.now();
-        let deltat = now - this.currentTime;
-        this.currentTime = now;
-        let fract = deltat / duration;
-        let angle = Math.PI * 2 * fract;
-
-        if (bounceTop == true) {
-            mat4.translate(diamond.modelViewMatrix, diamond.modelViewMatrix, [0, -.025, 0]);
-            if (this.modelViewMatrix[13] < -2.89) {
-                bounceBot = true;
-                bounceTop = false;
-            }
-        }
-
-        if (bounceBot == true) {
-            mat4.translate(diamond.modelViewMatrix, diamond.modelViewMatrix, [0, .025, 0]);
-            if (this.modelViewMatrix[13] > 2.89) {
-                bounceBot = false;
-                bounceTop = true;
-            }
-        }
-
-        // Rotates a mat4 by the given angle
-        // mat4 out the receiving matrix
-        // mat4 a the matrix to rotate
-        // Number rad the angle to rotate the matrix by
-        // vec3 axis the axis to rotate around
-        mat4.rotate(this.modelViewMatrix, this.modelViewMatrix, angle, rotationAxis);
-    };
-
-    return diamond;
-}
-
-
-
-
-
-
-function createDodecahedron2(gl, translation, rotationAxis) {
+function createDodecahedron(gl, translation, rotationAxis) {
     // Vertex Data
     let vertexBuffer;
     vertexBuffer = gl.createBuffer();
@@ -849,39 +521,34 @@ function createDodecahedron2(gl, translation, rotationAxis) {
 
     let faceColors = [
         //R    G    B    T
-        [1.0, 0.0, 0.0, 1.0],           // Primera
-        [0.0, 1.0, 0.0, 1.0],           // Segunda
-        [0.0, 0.0, 1.0, 1.0],           // Tercera
-        [1.0, 1.0, 0.0, 1.0],           // Cuarta
-        [1.0, 0.0, 1.0, 1.0],           // Quinta
-        [0.0, 1.0, 1.0, 1.0],           // Sexta
-        [1.0, 1.0, 1.0, 1.0],           // Séptima  
-        [0.0, 0.0, 0.0, 1.0],           //Octavo
-        [0.4, 0.0, 0.0, 1.0],           //Novena
-        [0.5691, 0.9333, 0.92, 1.0],    //Decima
-        [0.749, 0.572, 0.160, 1.0],     //Onceava
-        [0.670, 0.019, 0.949, 1.0]      //Doceava
+        [1.0, 0.0, 0.0, 1.0],           //1st face
+        [0.0, 1.0, 0.0, 1.0],           //2nd facew
+        [0.0, 0.0, 1.0, 1.0],           //3rd face
+        [1.0, 1.0, 0.0, 1.0],           //4th face
+        [1.0, 0.0, 1.0, 1.0],           //5th face
+        [0.0, 1.0, 1.0, 1.0],           //6th face
+        [1.0, 1.0, 1.0, 1.0],           //7th face  
+        [0.0, 0.0, 0.0, 1.0],           //8th face
+        [0.4, 0.0, 0.0, 1.0],           //9th face
+        [0.5691, 0.9333, 0.92, 1.0],    //10th face
+        [0.749, 0.572, 0.160, 1.0],     //11th face
+        [0.670, 0.019, 0.949, 1.0]      //12th face
     ];
 
     // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
     let vertexColors = [];
-    // for (const color of faceColors) 
-    // {
-    //     for (let j=0; j < 4; j++)
-    //         vertexColors.push(...color);
-    // }
     faceColors.forEach(color => {
-        for (let j = 0; j < 5; j++)
+        for (let j = 0; j < 5; j++) //Color cada 5 VERTICES
             vertexColors.push(...color);
     });
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColors), gl.STATIC_DRAW);
 
     // Index data (defines the triangles to be drawn).
-    let cubeIndexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
+    let dodecahedronIndexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, dodecahedronIndexBuffer);
 
-    let cubeIndices = [
+    let dodecahedronIndices = [
         0, 1, 2,        0, 4, 3,        0, 3, 2,            // Base triangles
         5, 6, 7,        5, 9, 8,        5, 8, 7,            // Lower middle, upper right triangles
         10, 11, 12,     10, 14, 13,     10, 13, 12,         // Lower middle, lower right triangles
@@ -898,17 +565,17 @@ function createDodecahedron2(gl, translation, rotationAxis) {
 
     // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
     // Uint16Array: Array of 16-bit unsigned integers.
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeIndices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(dodecahedronIndices), gl.STATIC_DRAW);
 
-    let cube = {
-        buffer: vertexBuffer, colorBuffer: colorBuffer, indices: cubeIndexBuffer,
-        vertSize: 3, nVerts: 60, colorSize: 4, nColors: 60, nIndices: 108,
+    let dodecahedron = {
+        buffer: vertexBuffer, colorBuffer: colorBuffer, indices: dodecahedronIndexBuffer,
+        vertSize: 3, nVerts: verts.length, colorSize:4, nColors: faceColors.length, nIndices: dodecahedronIndices.length,
         primtype: gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime: Date.now()
     };
 
-    mat4.translate(cube.modelViewMatrix, cube.modelViewMatrix, translation);
+    mat4.translate(dodecahedron.modelViewMatrix, dodecahedron.modelViewMatrix, translation);
 
-    cube.update = function () {
+    dodecahedron.update = function () {
         let now = Date.now();
         let deltat = now - this.currentTime;
         this.currentTime = now;
@@ -923,5 +590,153 @@ function createDodecahedron2(gl, translation, rotationAxis) {
         mat4.rotate(this.modelViewMatrix, this.modelViewMatrix, angle, rotationAxis);
     };
 
-    return cube;
+    return dodecahedron;
 }
+
+
+function createDiamond(gl, translation, rotationAxis) {
+    // Vertex Data
+    let vertexBuffer;
+    vertexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+
+    let verts = [
+        //Comienzan áreas positivas
+        // X,    Z,     Y
+        //Primera cara
+        -1.0, 0.0, 1.0, 	//  A   0
+        -1.0, 0.0, -1.0,    //  B   1
+        0.0, 1.25, 0.0,     //  P+  2
+
+        //Segunda cara
+        -1.0, 0.0, -1.0,    //  B   3
+        1.0, 0.0, -1.0,     //  C   4
+        0.0, 1.25, 0.0,     //  P+  5
+
+        //Tercer cara
+        1.0, 0.0, -1.0,     //  C   6
+        1.0, 0.0, 1.0,      //  D   7
+        0.0, 1.25, 0.0,     //  P+  8
+
+        //Cuarta cara
+        1.0, 0.0, 1.0,      //  A   9
+        -1.0, 0.0, 1.0,     //  D   10
+        0.0, 1.25, 0.0,     //  P+  11
+
+
+        //  A partir de aquí se pintan las caras negativas
+
+        //Left side
+        -1.0, 0.0, 1.0, 	//  A   12
+        -1.0, 0.0, -1.0,    //  B   13
+        0.0, -1.25, 0.0,    //  P-  14
+
+        //Back side
+        -1.0, 0.0, -1.0,    //  B   15
+        1.0, 0.0, -1.0,     //  C   16
+        0.0, -1.25, 0.0,    //  P-  17
+
+        //Right side
+        1.0, 0.0, -1.0,     //  C   18
+        1.0, 0.0, 1.0,      //  D   19
+        0.0, -1.25, 0.0,    //  P-  20
+
+        //Front side
+        1.0, 0.0, 1.0,      //  A   21
+        -1.0, 0.0, 1.0,     //  D   22
+        0.0, -1.25, 0.0,    //  P-  23
+    ];
+
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
+
+    // Color data
+    let colorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+
+    let faceColors = [
+        //R    G    B    T
+        [1.0, 0.0, 0.0, 1.0],       // Primera
+        [0.0, 1.0, 0.0, 1.0],       // Segunda
+        [0.0, 0.0, 1.0, 1.0],       // Tercera
+        [1.0, 1.0, 0.0, 1.0],       // Cuarta
+        [1.0, 0.0, 1.0, 1.0],       // Quinta
+        [0.0, 1.0, 1.0, 1.0],       // Sexta
+        [1.0, 1.0, 1.0, 1.0],       // Séptima  
+        [0.0, 0.0, 0.0, 1.0]        //Octavo
+    ];
+
+    // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
+    let vertexColors = [];
+
+    faceColors.forEach(color => {
+        for (let j = 0; j < 3; j++)
+            vertexColors.push(...color);
+    });
+
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColors), gl.STATIC_DRAW);
+
+    // Index data (defines the triangles to be drawn).
+    let diamondIndexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, diamondIndexBuffer);
+
+    let diamondIndices = [
+        0, 1, 2,        //Primer cara
+        3, 4, 5,        //Segunda cara
+        6, 7, 8,        //Tercera cara
+        9, 10, 11,      //Cuarta cara
+        12, 13, 14,     //Quinta cara
+        15, 16, 17,     //Sexta cara
+        18, 19, 20,     //Séptima cara
+        21, 22, 23      //Octava cara
+    ];
+
+    // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
+    // Uint16Array: Array of 16-bit unsigned integers.
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(diamondIndices), gl.STATIC_DRAW);
+
+    let diamond = {
+        buffer: vertexBuffer, colorBuffer: colorBuffer, indices: diamondIndexBuffer,
+        vertSize: 3, nVerts: verts.length, colorSize:4, nColors: faceColors.length, nIndices: diamondIndices.length,
+        primtype: gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime: Date.now()
+    };
+
+    mat4.translate(diamond.modelViewMatrix, diamond.modelViewMatrix, translation);
+
+    let bounceTop = true;
+    let bounceBot = false;
+
+    diamond.update = function () {
+        let now = Date.now();
+        let deltat = now - this.currentTime;
+        this.currentTime = now;
+        let fract = deltat / duration;
+        let angle = Math.PI * 2 * fract;
+
+        if (bounceTop == true) {
+            mat4.translate(diamond.modelViewMatrix, diamond.modelViewMatrix, [0, -.025, 0]);
+            if (this.modelViewMatrix[13] < -2.89) {
+                bounceBot = true;
+                bounceTop = false;
+            }
+        }
+
+        if (bounceBot == true) {
+            mat4.translate(diamond.modelViewMatrix, diamond.modelViewMatrix, [0, .025, 0]);
+            if (this.modelViewMatrix[13] > 2.89) {
+                bounceBot = false;
+                bounceTop = true;
+            }
+        }
+
+        // Rotates a mat4 by the given angle
+        // mat4 out the receiving matrix
+        // mat4 a the matrix to rotate
+        // Number rad the angle to rotate the matrix by
+        // vec3 axis the axis to rotate around
+        mat4.rotate(this.modelViewMatrix, this.modelViewMatrix, angle, rotationAxis);
+    };
+
+    return diamond;
+}
+
+
