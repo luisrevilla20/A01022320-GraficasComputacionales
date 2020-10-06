@@ -1,0 +1,80 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Planetarium</title>
+
+	<!-- <style>
+	body {
+		color: #000;
+		font-family:Monospace;
+		font-size:13px;
+		text-align:center;
+		font-weight: bold;
+
+		margin: 0px;
+		overflow: hidden;
+	}
+	#webglcanvas{
+		background-image:url(https://cdn.pixabay.com/photo/2016/06/05/07/59/stars-1436950_960_720.jpg);
+	}
+</style> -->
+
+	<link rel="stylesheet" href="../libs/jquery-ui/jquery-ui.css" />
+	<link rel="stylesheet" href="./css/main.css" />
+	<link rel="stylesheet" href="./css/threejsscene.css" />
+	<link rel="stylesheet" href="./css/satelites.css" />
+
+	<script src="../libs/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script src="../libs/jquery-ui/jquery-ui.js"></script>
+	<script src="../libs/three.js/three.js"></script>
+
+	<script src="sceneHandlersSolarSystem.js"></script>
+	<script src="threejsSolarSystem.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(
+			function () {
+
+				let canvas = document.getElementById("webglcanvas");
+
+				// create the scene
+				createScene(canvas);
+
+				// Run the run loop
+				run();
+			}
+		);
+	</script>
+
+</head>
+
+<body>
+
+	<div id="container">
+		<canvas id="webglcanvas"></canvas>
+		<div id="title">
+			Planetarium
+		</div>
+	</div>
+	<div class="satelitesButtons">
+		<!-- <button id="addPlanet">Add planet</button>
+		<button id="addSatelite">Add satelite</button>
+		<button id="resetScene">Reset</button> -->
+	</div>
+
+	<script>
+		// Get the canvas element form the page
+		var canvas = document.getElementById("webglcanvas");
+
+		/* Rresize the canvas to occupy the full page, 
+		by getting the widow width and height and setting it to canvas*/
+
+		console.log(window.width);
+
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+	</script>
+</body>
+
+</html>
