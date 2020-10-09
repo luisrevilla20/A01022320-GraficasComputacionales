@@ -235,7 +235,7 @@ class Astro {
         satelite.astroGroup.updateMatrixWorld();
     }
 
-    //Function that add the bump to the moons
+    //Function that add the bump to the moons or planets
     addBump(mapUrl, bumpMapUrl) {
         // Create a textre phong material for the cube
         // First, create the texture map
