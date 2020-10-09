@@ -6,21 +6,21 @@ _En esta tarea veremos como empezar a usar la libreria de THREE.js para poder cr
 
 ## Instrucciones 📋
 
-1.Crea 8 planetas (y plutón), con sus respectivas lunas, el sun, y el cinturón de asteroides.
-2.Los astros se pueden crear como esferas.
-3.Los planetas y lunas tienen que tener su propia rotación.
-4.Las lunas tienen que rotar al rededor de los planetas, y los planetas tienen que rotar al rededor del sol.
-5.Dibuja las orbitas de cada planeta.
-6.Cada elemento tiene que tener su propio materia, con texturas, normales, y bump maps (de existir).
-    1.La mayoría de las texturas las pueden encontrar en: http://planetpixelemporium.com/,  (Enlaces a un sitio externo.)http://www.celestiamotherlode.net/ (Enlaces a un sitio externo.) (Enlaces a un sitio externo.), https://www.solarsystemscope.com/textures/ (Enlaces a un sitio externo.)
-7.Investiga cómo funciona el orbit controller de three.js e integralo en la escena.
+1. Crea 8 planetas (y plutón), con sus respectivas lunas, el sun, y el cinturón de asteroides.
+2. Los astros se pueden crear como esferas.
+3. Los planetas y lunas tienen que tener su propia rotación.
+4. Las lunas tienen que rotar al rededor de los planetas, y los planetas tienen que rotar al rededor del sol.
+5. Dibuja las orbitas de cada planeta.
+6. Cada elemento tiene que tener su propio materia, con texturas, normales, y bump maps (de existir).
+    1. La mayoría de las texturas las pueden encontrar en: http://planetpixelemporium.com/,  (Enlaces a un sitio externo.)http://www.celestiamotherlode.net/ (Enlaces a un sitio externo.) (Enlaces a un sitio externo.), https://www.solarsystemscope.com/textures/ (Enlaces a un sitio externo.)
+7. Investiga cómo funciona el orbit controller de three.js e integralo en la escena.
 
 
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-## Funcionnamiento del Código 💻
+## Funcionamiento del Código 💻
 
 _A lo largo del codigo "threejsSolarSystem.js" se encuentran las funciones mas importantes que son:_
 Funciones | Descripcion
